@@ -9,8 +9,8 @@ app.use(cors());
 app.use(express.json());
 
 // Implement persons APIs using Express Modular Routers
-const personRouter = require("./router/books.js");
+const patientRouter = require("./router/patients.js");
 
-app.use("/persons", personRouter);
+app.use("/patients", patientRouter);
 
 module.exports = app;
