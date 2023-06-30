@@ -1,5 +1,5 @@
 const {
-  getALLPatients,
+  getAllPatients,
   getPatientById,
   createPatient,
   updatePatient,
@@ -7,8 +7,8 @@ const {
 } = require("../repositories/patient.js");
 
 const getAll = async (req, res) => {
-  const patients = await getALLPatients();
-  res.json(patients);
+  const patients = await getAllPatients();
+  res.json({ patients: patients.rows });
 };
 module.exports = {
   getAll,
