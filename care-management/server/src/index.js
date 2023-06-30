@@ -1,7 +1,7 @@
 /* REQUIRE APP */
 const app = require("./server.js");
-const db = require("../db");
-const port = 3030;
+const db = require("../db/index.js");
+const port = 8080;
 
 /* START SERVER */
 app.listen(port, () => {
