@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const { getAll } = require("../models/patient.js");
+const { getAll, getById, create } = require("../models/patient.js");
 // get all patients
 router.get("/", async (req, res) => {
   try {
@@ -9,5 +9,14 @@ router.get("/", async (req, res) => {
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
+});
+// get patient by id
+router.get("/:id", async (req, res) => {
+  await getById(req, res);
+});
+
+// POST create a patient
+router.post("/", async (req, res) => {
+  await create(req, res);
 });
 module.exports = router;
