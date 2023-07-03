@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-
+import "./patientCreate.css";
 const initialFormState = {
   first_name: "",
   last_name: "",
