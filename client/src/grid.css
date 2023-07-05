@@ -1,0 +1,77 @@
+/* gridLayout.css */
+body {
+  font-family: "Trebuchet MS", Helvetica, sans-serif;
+  /* text-transform: uppercase; */
+}
+@supports (display: grid) {
+  .grid-container {
+    height: 100vh;
+    background: #dae4cb;
+    color: white;
+    display: grid;
+    grid-template:
+      "header header" 0.5fr
+      "sidebar main" 5fr/ 1fr 5fr;
+  }
+
+  .header,
+  .footer {
+    background: wheat;
+    grid-column-start: 1;
+    grid-column-end: end;
+    text-align: left;
+    font-weight: bolder;
+    font-size: xx-large;
+    padding: 30px;
+  }
+  .sidebar {
+    background: skyblue;
+    overflow: auto;
+    height: 100%;
+    color: black;
+    font-size: large;
+    font-weight: bold;
+  }
+  .sidebar-header {
+    display: grid;
+    grid-template-rows: repeat(10, 1fr);
+    border-radius: 15px;
+    gap: 10px;
+    color: black;
+    padding-top: 20px;
+    padding-left: 60px;
+  }
+  .sidebar-menu {
+    width: 150px;
+    height: 15px;
+    border: 2px solid black;
+    border-radius: 10px;
+    padding: 10px;
+    cursor: pointer;
+    margin-left: 60px;
+    transition: all 0.5s ease;
+    display: inline-block;
+  }
+  .main {
+    background: rgb(135, 135, 236);
+    overflow: auto;
+    height: 100%;
+    color: black;
+    font-size: x-large;
+    font-weight: bold;
+  }
+  .header,
+  .sidebar,
+  .main,
+  .footer {
+    margin: 5px;
+    text-align: center;
+    color: black;
+  }
+  .header,
+  .footer,
+  .sidebar-menu {
+    background: #c8dcaa;
+    color: black;
+  }
+}
