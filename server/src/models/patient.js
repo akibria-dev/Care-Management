@@ -71,8 +71,68 @@ const create = async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 };
+const update = async (req, res) => {
+  const { id } = req.params;
+  const {
+    first_name,
+    last_name,
+    gender,
+    birthdate,
+    email,
+    phone,
+    address,
+    city,
+    postcode,
+    country,
+  } = req.body;
+  const values = [
+    first_name,
+    last_name,
+    gender,
+    birthdate,
+    email,
+    phone,
+    address,
+    city,
+    postcode,
+    country,
+  ];
+  try {
+    const patients = await updatePatient(id, values);
+
+    if (!patients) {
+      res.status(400).json({
+        error: "Missing fields in the request body.",
+        body: req.body,
+      });
+    } else {
+      res.json({ patient: patients });
+    }
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+const remove = async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const patients = await deletePatient(id);
+
+    if (!patients) {
+      res.status(404).json({
+        error: `A patient with the provided ID ${id} does not exist`,
+      });
+    } else {
+      res.json({ patient: patients });
+    }
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
 module.exports = {
   getAll,
   getById,
   create,
+  update,
+  remove,
 };

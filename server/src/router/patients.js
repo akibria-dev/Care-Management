@@ -1,6 +1,12 @@
 const express = require("express");
 const router = express.Router();
-const { getAll, getById, create } = require("../models/patient.js");
+const {
+  getAll,
+  getById,
+  create,
+  update,
+  remove,
+} = require("../models/patient.js");
 // get all patients
 router.get("/", async (req, res) => {
   try {
@@ -19,4 +25,13 @@ router.get("/:id", async (req, res) => {
 router.post("/", async (req, res) => {
   await create(req, res);
 });
+// PUT update a patient
+router.put("/:id", async (req, res) => {
+  await update(req, res);
+});
+// DELETE a patient
+router.delete("/:id", async (req, res) => {
+  await remove(req, res);
+});
+
 module.exports = router;

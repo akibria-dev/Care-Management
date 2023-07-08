@@ -19,4 +19,25 @@ const createPatient = async (values) => {
 
   return patients.rows[0];
 };
-module.exports = { getAllPatients, getPatientById, createPatient }; // export the function
+const updatePatient = async (id, values) => {
+  const patients = await db.query(
+    `UPDATE patients
+    SET first_name = $2, last_name = $3, gender = $4, birthdate = $5, email = $6, phone = $7, address = $8, city = $9, postcode = $10, country = $11
+    WHERE patient_id = $1 RETURNING *`,
+    [id, ...values]
+  );
+  return patients.rows[0];
+};
+const deletePatient = async (id) => {
+  const patients = await db.query(
+    `DELETE FROM patients WHERE patient_id = ${id} RETURNING *`
+  );
+  return patients.rows[0];
+};
+module.exports = {
+  getAllPatients,
+  getPatientById,
+  createPatient,
+  updatePatient,
+  deletePatient,
+}; // export the function
